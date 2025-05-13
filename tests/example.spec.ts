@@ -1,18 +1,44 @@
-import { test, expect } from '@playwright/test';
+import {test, expect} from '@playwright/test'
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('has title', async ( {page} ) => {
+  await page.goto('https://practicetestautomation.com/practice-test-login/');
+  await page.locator("#username").fill("student")
+  await page.locator("#password").fill("Password123")
+  await page.locator("#submit").click()
+  await expect(page.locator("h1.post-title")).toBeVisible()
+ 
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  // await launch the url
+  // await Fill the username
+  // await Fill the password
+  // await Click the login button
+
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+// browser and page fixture in playwright
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+
+test("Login validation using browser fixture", async ({browser})=>{
+
+  // create a browser context 
+  // create a new page on the browser context
+
+  const context = await browser.newContext() // Creates a new browser context
+  const page = await context.newPage() //Creates a new page in the browser context.
+
+  await page.goto('https://practicetestautomation.com/practice-test-login/');
+  await page.locator("#username").fill("student")
+  await page.locator("#password").fill("Password123")
+  await page.locator("#submit").click()
+  await expect(page.locator("h1.post-title")).toBeVisible()
+})
+
+test.only("Login validation using page fixture", async ({page})=>{
+  await page.goto('https://practicetestautomation.com/practice-test-login/');
+  await page.locator("#username").fill("student")
+  await page.locator("#password").fill("Password123")
+  await page.locator("#submit").click()
+  await expect(page.locator("h1.post-title")).toBeVisible()
+})
+
