@@ -1,5 +1,5 @@
 {
-  "name": "playwrightautomation",
+  "name": "pwmay2025",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {},
@@ -10,5 +10,8 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.3"
+  },
+  "dependencies": {
+    "pwmay2025": "file:"
   }
 }
