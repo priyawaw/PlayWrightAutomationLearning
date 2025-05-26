@@ -6,4 +6,4 @@
 
 // CSS selector parent to child: div [type="button"], div [class="amplify-label"], div [class="amplify-heading cursor text-primary pr-4"]
 
-//CSS selector using text:
+// Xpath : *[id="signInBtn"], *[type="text"], //input[@ name="terms"]
