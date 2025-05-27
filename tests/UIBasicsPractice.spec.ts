@@ -22,9 +22,13 @@ import {test , expect} from "@playwright/test"
 
 test("UI Basics validation", async function({page}){
 // goto("url") - This will help us in launching the url on the browser
-    await page.waitForEvent
-    await page.goto("https://demoqa.com/automation-practice-form")
-    await page.waitForEvent
+    
+    await page.goto("https://demoqa.com/automation-practice-form", {
+    waitUntil: "domcontentloaded",
+    timeout: 60000
+  });
+
+   
     // fill(string) - Set a value to the input field.
     const firstName = page.getByPlaceholder("First Name")
     await firstName.fill("Testing")
@@ -38,6 +42,10 @@ test("UI Basics validation", async function({page}){
     await expect(page.getByPlaceholder("name@example.com")).toHaveValue("email@example.com")
 
     // check() - Will check the radio button or checkbox
+
+    await expect(page.getByRole('radio', {name: 'Female'})).not.toBeChecked()
+    await page.getByRole('radio', {name: 'Female'}).click({force: true})
+    await expect(page.getByRole('radio', {name: 'Female'})).toBeChecked({ timeout: 60000  });
 
 })
 
